@@ -27,6 +27,11 @@ public class MyProgressCircle extends View {
     private int ringRadius = 80;
     private int sweepAngle = 0;
 
+    //优化 onDraw 局部变量
+    private int width;
+    private int height;
+    private RectF rectF;
+
     public MyProgressCircle(Context context) {
         super(context);
     }
@@ -61,17 +66,23 @@ public class MyProgressCircle extends View {
 
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
+        rectF = new RectF(width / 2 - ringRadius, height / 2 - ringRadius, width / 2 + ringRadius, height / 2 + ringRadius);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         drawOutRect(canvas);
 
-        int width = getMeasuredWidth();
-        int height = getMeasuredHeight();
         //绘制圆
         canvas.drawCircle(width / 2, height / 2, circleRadius, circlePaint);
 
         //绘制进度圆环
 //        canvas.drawCircle(width / 2, height / 2, ringRadius, arcPaint);
-        RectF rectF = new RectF(width / 2 - ringRadius, height / 2 - ringRadius, width / 2 + ringRadius, height / 2 + ringRadius);
+
         canvas.drawArc(rectF, 0, sweepAngle, false, arcPaint);
         if (sweepAngle < 355) {
             sweepAngle += 5;
@@ -92,8 +103,8 @@ public class MyProgressCircle extends View {
         canvas.drawRect(new Rect(
                 0,
                 0,
-                getMeasuredWidth(),
-                getMeasuredHeight()
+                width,
+                height
         ), paint);
     }
 }

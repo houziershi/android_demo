@@ -27,6 +27,11 @@ public class MyLineIndicator extends View {
             SCALE,
             SCALE,};
 
+    private int width;
+    private int height;
+    private int margin;
+    private RectF rectF;
+
     public MyLineIndicator(Context context) {
         super(context);
     }
@@ -48,18 +53,23 @@ public class MyLineIndicator extends View {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
+        margin = width / 11;
+        rectF = new RectF(0, (height - indicatorHeight) / 2, -margin, (height + indicatorHeight) / 2);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         drawOutRect(canvas);
 
-        int width = getMeasuredWidth();
-        int height = getMeasuredHeight();
-
-        int margin = width / 11;
         canvas.save();
         for (int i = 0; i < 5; i++) {
             canvas.translate(margin * 2, 0);
             canvas.scale(SCALE, scaleYFloats[i], width / 2, height / 2);
-            RectF rectF = new RectF(0, (height - indicatorHeight) / 2, -margin, (height + indicatorHeight) / 2);
+
             canvas.drawRoundRect(rectF, 100, 100, paint);
         }
         canvas.restore();
