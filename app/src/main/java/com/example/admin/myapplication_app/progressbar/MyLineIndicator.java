@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.view.View;
  */
 public class MyLineIndicator extends View {
     private Paint paint;
+    private int indicatorWidth = 20;
+    private int indicatorHeight = 150;
     public MyLineIndicator(Context context) {
         super(context);
     }
@@ -36,7 +39,10 @@ public class MyLineIndicator extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
 
-
+        int margin = width/11;
+        RectF rectF = new RectF();
     }
 }
