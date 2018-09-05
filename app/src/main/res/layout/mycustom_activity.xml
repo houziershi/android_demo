@@ -14,4 +14,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
+    <com.example.admin.myapplication_app.progressbar.MyTickMark
+        android:layout_width="400dp"
+        android:layout_height="100dp" />
+
 </LinearLayout>

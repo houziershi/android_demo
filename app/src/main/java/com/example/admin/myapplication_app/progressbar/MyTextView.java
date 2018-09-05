@@ -16,6 +16,7 @@ import android.util.AttributeSet;
  * https://developer.android.com/reference/android/view/View
  * https://www.cnblogs.com/mengdd/p/3332882.html
  * https://github.com/xuyisheng/AndroidHeroes
+ * Canvas之translate、scale、rotate、skew方法讲解！ Canvas之translate、scale、rotate、skew方法讲解！
  */
 public class MyTextView extends AppCompatTextView {
     private static final int BORDER = 2;
