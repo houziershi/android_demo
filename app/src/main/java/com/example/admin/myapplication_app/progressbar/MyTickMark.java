@@ -36,7 +36,6 @@ public class MyTickMark extends View {
 
     private void initPaint() {
         paint = new Paint();
-        paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(6);
@@ -72,6 +71,7 @@ public class MyTickMark extends View {
     }
 
     private void drawOutRect(Canvas canvas) {
+
         canvas.drawRect(new Rect(
                 0,
                 0,

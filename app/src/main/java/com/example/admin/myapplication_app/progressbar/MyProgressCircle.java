@@ -2,7 +2,9 @@ package com.example.admin.myapplication_app.progressbar;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -60,6 +62,8 @@ public class MyProgressCircle extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        drawOutRect(canvas);
+
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
         //绘制圆
@@ -78,5 +82,18 @@ public class MyProgressCircle extends View {
         //绘制文字
         canvas.drawText(Integer.toString(sweepAngle), width / 2, height / 2, textPaint);
         postInvalidateDelayed(100);
+    }
+
+    private void drawOutRect(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        canvas.drawRect(new Rect(
+                0,
+                0,
+                getMeasuredWidth(),
+                getMeasuredHeight()
+        ), paint);
     }
 }
