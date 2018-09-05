@@ -43,7 +43,19 @@ public class MyTextView extends AppCompatTextView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
+        int paddingTop = getPaddingTop();
+        int paddingBottom = getPaddingBottom();
+
+        paddingLeft = paddingLeft + BORDER;
+        paddingRight = paddingRight + BORDER;
+        paddingTop = paddingTop + BORDER;
+        paddingBottom = paddingBottom + BORDER;
+
+        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
     }
 
     @Override
