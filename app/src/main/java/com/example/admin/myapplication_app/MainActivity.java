@@ -18,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         avi= (AVLoadingIndicatorView) findViewById(R.id.avi);
         LineScaleIndicator lineScaleIndicator = new LineScaleIndicator();
         avi.setIndicator(lineScaleIndicator);
+
+        // TODO: 2018/12/31
+        /*
+        test git revert
+         */
     }
 
     public void hideClick(View view) {
