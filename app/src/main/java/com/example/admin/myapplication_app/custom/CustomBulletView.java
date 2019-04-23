@@ -10,6 +10,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Discription:仿照喜马拉雅FM音频弹幕
  *
@@ -28,6 +31,25 @@ public class CustomBulletView extends View {
     private int mWidth;
     private int mHeight;
     private RectF mRectF;
+    private int autuMoveWidth;
+    private int autoMoveHeight;
+    private View parentView;
+    private final int pos = 40;
+    private int movePos = 0;
+    private Timer mTimer = new Timer();
+    private TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            if (movePos <= autuMoveWidth) {
+                setX(movePos);
+                movePos = movePos + pos;
+                requestLayout();
+            }else {
+                task.cancel();
+            }
+        }
+    };
+
 
     public CustomBulletView(Context context) {
         super(context);
@@ -50,6 +72,7 @@ public class CustomBulletView extends View {
         paint.setAntiAlias(true);
     }
 
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -63,11 +86,18 @@ public class CustomBulletView extends View {
         //画外框
         drawOutRect(canvas);
         //画圆
-        canvas.drawCircle(circleRadius,circleRadius,circleRadius, paint);
+        canvas.drawCircle(circleRadius, circleRadius, circleRadius, paint);
 
         //画文字背景
         canvas.drawRoundRect(mRectF, x_radius, y_radius, paint);
 
+    }
+
+    public void startAutoMove(int width, int height, View parent) {
+        autuMoveWidth = width;
+        autoMoveHeight = height;
+        parentView = parent;
+        mTimer.schedule(task, 0, 1000);
     }
 
     private void drawOutRect(Canvas canvas) {

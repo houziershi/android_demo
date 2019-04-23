@@ -28,4 +28,10 @@
         android:layout_width="200dp"
         android:layout_height="40dp" />
 
+    <com.example.admin.myapplication_app.custom.BulletViewParent
+        android:id="@+id/bullet_parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"></com.example.admin.myapplication_app.custom.BulletViewParent>
+
 </LinearLayout>

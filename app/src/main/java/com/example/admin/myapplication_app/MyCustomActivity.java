@@ -11,8 +11,10 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.example.admin.myapplication_app.custom.BulletViewParent;
 import com.example.admin.myapplication_app.custom.CustomBulletView;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
 
@@ -28,6 +30,7 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
     private LinearLayout container;
+    private BulletViewParent bulletViewParent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,8 +44,20 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
         CustomBulletView customBulletView = new CustomBulletView(this);
         customBulletView.setLayoutParams(new LinearLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
         container.addView(customBulletView);
+
+        bulletViewParent = findViewById(R.id.bullet_parent);
+
+        CustomBulletView customBullet = new CustomBulletView(this);
+        customBullet.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
+        bulletViewParent.addView(customBullet);
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bulletViewParent.childViewAutoMove();
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
