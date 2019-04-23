@@ -86,11 +86,12 @@ public class MyTextView extends AppCompatTextView {
         int result;
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
+        //match parent; 具体值
         if (specMode == MeasureSpec.EXACTLY) {
             result = specSize;
         } else {
             result = (int) getPaint().measureText(getText().toString()) + getPaddingLeft() + getPaddingRight() + BORDER * 2;
-
+            //wrap content
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
             }
