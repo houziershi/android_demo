@@ -1,5 +1,6 @@
 package com.example.admin.myapplication_app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
@@ -9,7 +10,10 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import com.example.admin.myapplication_app.custom.CustomBulletView;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
 
 import java.util.Calendar;
@@ -18,23 +22,27 @@ import java.util.Calendar;
  * Discription:
  * Created by guokun on 2018/9/4.
  */
-public class MyCustomActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener{
+public class MyCustomActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
     private VelocityTracker mVelocityTracker = null;
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+    private LinearLayout container;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mycustom_activity);
         ((MyLineIndicator) findViewById(R.id.my_line_indicator)).starAnimator();
-
-        mDetector = new GestureDetectorCompat(this,this);
+        container = findViewById(R.id.container);
+        mDetector = new GestureDetectorCompat(this, this);
         mDetector.setOnDoubleTapListener(this);
-        Calendar calendar = Calendar.getInstance();
-        calendar.get(Calendar.YEAR);
+
+        CustomBulletView customBulletView = new CustomBulletView(this);
+        customBulletView.setLayoutParams(new LinearLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
+        container.addView(customBulletView);
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -114,7 +122,7 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        Log.d(DEBUG_TAG, "onScroll: " + e1.toString()+"--------"+e2.toString());
+        Log.d(DEBUG_TAG, "onScroll: " + e1.toString() + "--------" + e2.toString());
         return true;
     }
 
@@ -125,7 +133,7 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        Log.d(DEBUG_TAG, "onFling: " + e1.toString()+e2.toString());
+        Log.d(DEBUG_TAG, "onFling: " + e1.toString() + e2.toString());
         return true;
     }
 }

@@ -31,6 +31,7 @@ public class CustomBulletView extends View {
 
     public CustomBulletView(Context context) {
         super(context);
+        initPaint();
     }
 
     public CustomBulletView(Context context, @Nullable AttributeSet attrs) {
