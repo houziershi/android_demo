@@ -1,6 +1,5 @@
 package com.example.admin.myapplication_app;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
@@ -16,18 +15,19 @@ import android.widget.LinearLayout;
 
 import com.example.admin.myapplication_app.custom.BulletViewParent;
 import com.example.admin.myapplication_app.custom.CustomBulletView;
+import com.example.admin.myapplication_app.custom.CustomGroupView;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
 
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Discription:
  * Created by guokun on 2018/9/4.
  */
 public class MyCustomActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    private VelocityTracker mVelocityTracker = null;
-
     private static final String DEBUG_TAG = "Gestures";
+    private VelocityTracker mVelocityTracker = null;
     private GestureDetectorCompat mDetector;
     private LinearLayout container;
     private BulletViewParent bulletViewParent;
@@ -47,16 +47,34 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
 
         bulletViewParent = findViewById(R.id.bullet_parent);
 
-        CustomBulletView customBullet = new CustomBulletView(this);
-        customBullet.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
-        bulletViewParent.addView(customBullet);
-
+        List<View> customBulletViews = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+//            CustomBulletView customBullet = new CustomBulletView(this);
+//            customBullet.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
+            CustomGroupView customGroupView = new CustomGroupView(this);
+            customGroupView.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 70), Util.dip2px(this, 20)));
+            customBulletViews.add(customGroupView);
+        }
+        bulletViewParent.setData(customBulletViews);
+        bulletViewParent.start();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        bulletViewParent.childViewAutoMove();
+        bulletViewParent.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bulletViewParent.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bulletViewParent.onDestroy();
     }
 
     @Override
