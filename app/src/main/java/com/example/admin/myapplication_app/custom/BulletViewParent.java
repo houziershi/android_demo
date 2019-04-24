@@ -28,8 +28,8 @@ public class BulletViewParent extends FrameLayout {
     private final int displayLines = 4;
     private final long animationTime = 6 * 1000L; //动画时间
     private int lastLine;
-    private int barrageViewHeight;
-    private int barrageViewWidth;
+    private int bulletViewHeight;
+    private int bulletViewWidth;
     private LinearInterpolator linearInterpolator;
     private boolean isStart;
     private int currentIndex;
@@ -49,21 +49,14 @@ public class BulletViewParent extends FrameLayout {
 
     public BulletViewParent(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        barrageViewWidth = getWidth();
-        barrageViewHeight = getHeight();
+        bulletViewWidth = getWidth();
+        bulletViewHeight = getHeight();
     }
-
 
     public void setData(List<View> list) {
         customBulletViewList = list;
@@ -102,10 +95,10 @@ public class BulletViewParent extends FrameLayout {
 
 
     private void addBulletView(final View view) {
-        view.setY(getItemRamdomY());
+        view.setY(getItemRandomY());
         view.measure(0, 0);
         int itemViewWidth = view.getMeasuredWidth();
-        view.setX(this.barrageViewWidth);
+        view.setX(this.bulletViewWidth);
         addView(view);
 
         if (linearInterpolator == null) {
@@ -144,7 +137,7 @@ public class BulletViewParent extends FrameLayout {
     /**
      * 获得随机的Y轴的值
      */
-    private float getItemRamdomY() {
+    private float getItemRandomY() {
         int currentY;
 
         //随机选择弹幕出现的行数位置，跟上一条位置不同行
@@ -154,7 +147,7 @@ public class BulletViewParent extends FrameLayout {
         }
 
         //当前itemView y值
-        currentY = barrageViewHeight / displayLines * (randomLine - 1);
+        currentY = bulletViewHeight / displayLines * (randomLine - 1);
         lastLine = randomLine;
         return currentY;
     }
