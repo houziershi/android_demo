@@ -2,6 +2,8 @@ package com.example.admin.myapplication_app;
 
 import android.content.Context;
 
+import com.example.admin.myapplication_app.data.Note;
+
 /**
  * Discription:
  * Created by guokun on 2019/4/23.
@@ -29,5 +31,17 @@ public class Util {
      */
     public static int getDeviceHeightPixels(Context context) {
         return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    public static void main(String[] args) {
+        Note note1 = new Note();
+        note1.setEntityId(2L);
+        note1.setChapterId(1L);
+        Note note2 = new Note();
+        note2.setEntityId(2L);
+        note2.setEntityId(1L);
+
+
+
     }
 }

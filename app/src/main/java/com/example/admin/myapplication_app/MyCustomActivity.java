@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import com.example.admin.myapplication_app.custom.BulletViewParent;
 import com.example.admin.myapplication_app.custom.CustomBulletView;
 import com.example.admin.myapplication_app.custom.CustomGroupView;
+import com.example.admin.myapplication_app.data.DaoSession;
+import com.example.admin.myapplication_app.data.Note;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
 
 import java.util.ArrayList;
@@ -46,7 +48,6 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
         container.addView(customBulletView);
 
         bulletViewParent = findViewById(R.id.bullet_parent);
-
         List<View> customBulletViews = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
 //            CustomBulletView customBullet = new CustomBulletView(this);
@@ -57,6 +58,19 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
         }
         bulletViewParent.setData(customBulletViews);
         bulletViewParent.start();
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DaoSession daoInstant = BaseApplication.getDaoInstant();
+                for (int i = 0; i < 3; i++) {
+                    Note note = new Note();
+                    note.setEntityId(2L);
+                    note.setChapterId(3L);
+                    daoInstant.insertOrReplace(note);
+                }
+
+            }
+        }).start();*/
     }
 
     @Override
