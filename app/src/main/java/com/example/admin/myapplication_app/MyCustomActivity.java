@@ -12,10 +12,13 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.admin.myapplication_app.custom.BulletViewParent;
 import com.example.admin.myapplication_app.custom.CustomBulletView;
 import com.example.admin.myapplication_app.custom.CustomGroupView;
+import com.example.admin.myapplication_app.customview.FoldTextView;
+import com.example.admin.myapplication_app.customview.SpannableFoldTextView;
 import com.example.admin.myapplication_app.data.DaoSession;
 import com.example.admin.myapplication_app.data.Note;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
@@ -33,6 +36,8 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
     private GestureDetectorCompat mDetector;
     private LinearLayout container;
     private BulletViewParent bulletViewParent;
+    private SpannableFoldTextView spanTextView;
+    private FoldTextView foldTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,34 +48,37 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
         mDetector = new GestureDetectorCompat(this, this);
         mDetector.setOnDoubleTapListener(this);
 
-        CustomBulletView customBulletView = new CustomBulletView(this);
+       /* CustomBulletView customBulletView = new CustomBulletView(this);
         customBulletView.setLayoutParams(new LinearLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
-        container.addView(customBulletView);
+        container.addView(customBulletView);*/
 
         bulletViewParent = findViewById(R.id.bullet_parent);
         List<View> customBulletViews = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-//            CustomBulletView customBullet = new CustomBulletView(this);
-//            customBullet.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 200), Util.dip2px(this, 40)));
             CustomGroupView customGroupView = new CustomGroupView(this);
             customGroupView.setLayoutParams(new FrameLayout.LayoutParams(Util.dip2px(this, 70), Util.dip2px(this, 20)));
             customBulletViews.add(customGroupView);
         }
         bulletViewParent.setData(customBulletViews);
         bulletViewParent.start();
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                DaoSession daoInstant = BaseApplication.getDaoInstant();
-                for (int i = 0; i < 3; i++) {
-                    Note note = new Note();
-                    note.setEntityId(2L);
-                    note.setChapterId(3L);
-                    daoInstant.insertOrReplace(note);
-                }
 
+        spanTextView = findViewById(R.id.text);
+        spanTextView.setText("111111123阿斯顿发阿斯顿发送到大。厦法定阿萨【德法师打发斯蒂芬撒地】方阿萨德法师打发斯问问蒂芬撒地方阿萨德法师打发斯蒂。芬撒地方发送到发送到发送到发送到发送到发送，到发送到发送到发送到，发送111111123阿斯顿发阿斯顿发送到大。厦法定阿萨【德法师打发斯蒂芬撒地】方阿萨德法师打发斯问问蒂芬撒地方阿萨德法师打发斯蒂。芬撒地方发送到发送到发送到发送到发送到发送，到发送到发送到发送到，发送");
+        spanTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyCustomActivity.this, "textView点击事件", Toast.LENGTH_SHORT).show();
             }
-        }).start();*/
+        });
+
+        foldTextView = findViewById(R.id.text2);
+        foldTextView.setText("111111123阿斯顿发阿斯顿发送到大。厦法定阿萨【德法师打发斯蒂芬撒地】方阿萨德法师打发斯问问蒂芬撒地方阿萨德法师打发斯蒂。芬撒地方发送到发送到发送到发送到发送到发送，到发送到发送到发送到，发送111111123阿斯顿发阿斯顿发送到大。厦法定阿萨【德法师打发斯蒂芬撒地】方阿萨德法师打发斯问问蒂芬撒地方阿萨德法师打发斯蒂。芬撒地方发送到发送到发送到发送到发送到发送，到发送到发送到发送到，发送");
+        foldTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyCustomActivity.this, "textView点击事件", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
