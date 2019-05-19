@@ -2,14 +2,17 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion = '26.0.0'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.admin.myapplication_app"
         minSdkVersion 23
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -20,8 +23,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'org.greenrobot:greendao:3.2.2' // add library
-    compile 'com.facebook.stetho:stetho:1.5.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.annotation:annotation:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.0'
 }

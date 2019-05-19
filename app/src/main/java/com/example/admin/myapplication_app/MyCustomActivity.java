@@ -1,10 +1,11 @@
 package com.example.admin.myapplication_app;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.VelocityTrackerCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -15,12 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.admin.myapplication_app.custom.BulletViewParent;
-import com.example.admin.myapplication_app.custom.CustomBulletView;
 import com.example.admin.myapplication_app.custom.CustomGroupView;
 import com.example.admin.myapplication_app.customview.FoldTextView;
 import com.example.admin.myapplication_app.customview.SpannableFoldTextView;
-import com.example.admin.myapplication_app.data.DaoSession;
-import com.example.admin.myapplication_app.data.Note;
 import com.example.admin.myapplication_app.progressbar.MyLineIndicator;
 
 import java.util.ArrayList;
