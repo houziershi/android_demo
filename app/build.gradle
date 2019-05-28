@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
@@ -29,4 +31,9 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2' // add library
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.10.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
