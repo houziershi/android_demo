@@ -1,11 +1,13 @@
 package com.example.admin.myapplication_app;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.VelocityTrackerCompat;
+
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -13,6 +15,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.myapplication_app.custom.BulletViewParent;
@@ -36,6 +39,7 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
     private BulletViewParent bulletViewParent;
     private SpannableFoldTextView spanTextView;
     private FoldTextView foldTextView;
+    private TextView gradientTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +81,12 @@ public class MyCustomActivity extends AppCompatActivity implements GestureDetect
                 Toast.makeText(MyCustomActivity.this, "textView点击事件", Toast.LENGTH_SHORT).show();
             }
         });
+
+        gradientTv = findViewById(R.id.gradient_tv);
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(gradientTv, "scaleX", 0.5f, 1f);
+        objectAnimator.setDuration(2000);
+        objectAnimator.start();
+
     }
 
     @Override

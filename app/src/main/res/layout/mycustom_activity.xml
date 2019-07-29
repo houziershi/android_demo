@@ -63,4 +63,10 @@
         app:tipColor="@color/colorPrimary"
         app:tipGravity="0" />
 
+    <TextView
+        android:id="@+id/gradient_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="在唱房东的猫的哥"/>
+
 </LinearLayout>

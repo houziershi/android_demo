@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff0000"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath
+        android:id="@+id/clip_parent_view"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        app:clip_path_radius_corner="10dp"
+        app:clip_path_rate="0.8"
+        app:clip_path_show="true">
+
+        <com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath
+            android:id="@+id/clip_view"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:clip_path_radius_corner="10dp"
+            app:clip_path_rate="0.8">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:text="代发件代发解放军阿里附近；奥拉夫地方加奥拉夫结案率加法；"
+                android:textSize="30dp" />
+
+        </com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath>
+
+    </com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath>
+
+    <TextView
+        android:id="@+id/tv_emoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffff00" />
+
+</LinearLayout>

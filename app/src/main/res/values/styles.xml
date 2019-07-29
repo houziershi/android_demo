@@ -33,4 +33,10 @@
         <item name="indicatorName">BallPulseIndicator</item>
     </style>
 
+    <declare-styleable name="RoundRectangleLayoutWithClipPath">
+        <attr name="clip_path_radius_corner" format="dimension"/>
+        <attr name="clip_path_rate" format="float"/>
+        <attr name="clip_path_show" format="boolean"/>
+    </declare-styleable>
+
 </resources>
