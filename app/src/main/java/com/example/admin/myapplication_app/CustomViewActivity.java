@@ -2,11 +2,10 @@ package com.example.admin.myapplication_app;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.Path;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,5 +43,8 @@ public class CustomViewActivity extends AppCompatActivity {
                 objectAnimator.start();
             }
         });
+
+        Path path = new Path();
+
     }
 }

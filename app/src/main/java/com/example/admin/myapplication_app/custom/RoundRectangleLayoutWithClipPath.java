@@ -27,6 +27,15 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
     private RectF mRectF;
     private float rate;
     private boolean showStroke;
+
+    private float triangle = 0f;
+
+    //优化 onDraw 局部变量
+    private int width;
+    private int height;
+
+    private Paint paint;
+    private Path triPath;
     /**
      * 利用clip剪切的四个角半径，八个数据分别代表左上角（x轴半径，y轴半径），右上角（**），右下角（**），左下角（**）
      */
@@ -59,48 +68,87 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
         rids[7] = mRadius;
 
         rate = array.getFloat(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_rate, 0.5f);
+        triangle = array.getDimension(R.styleable.RoundRectangleLayoutWithClipPath_triangle, 0f);
         showStroke = array.getBoolean(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_show, false);
         array.recycle();
         mPath = new Path();
         paintFlagsDrawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+
+        paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(DEFAULT_STROKE_WIDTH);
+        paint.setAntiAlias(true);
+        paint.setDither(true);
+
+        triPath = new Path();
+        setWillNotDraw(false);
     }
 
-    public void setRate(float rate) {
-        this.rate = rate;
+    public void setRate(float newRate) {
+        this.rate = newRate;
         //为保持边界宽度一致， 计算时要考虑到这个DEFAULT_STROKE_WIDTH / 2
-        mRectF = new RectF(getWidth() / 8 * 3 - rate * getWidth() / 8 * 3 + DEFAULT_STROKE_WIDTH / 2,
-                0,
-                rate * getWidth() / 8 * 3 + getWidth() / 8 * 5 - DEFAULT_STROKE_WIDTH / 2,
-                getHeight());
+
+        if (triangle != 0) {
+            mRectF = new RectF(width / 8 * 3 - rate * width / 8 * 3 + DEFAULT_STROKE_WIDTH / 2,
+                    triangle,
+                    rate * width / 8 * 3 + width / 8 * 5 - DEFAULT_STROKE_WIDTH / 2,
+                    height);
+        } else {
+            mRectF = new RectF(width / 8 * 3 - rate * width / 8 * 3 + DEFAULT_STROKE_WIDTH / 2,
+                    0,
+                    rate * width / 8 * 3 + width / 8 * 5 - DEFAULT_STROKE_WIDTH / 2,
+                    height);
+        }
+
         invalidate();
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
         //画 裁剪区域
-        mPath.reset();
-        mPath.addRoundRect(mRectF, rids, Path.Direction.CW);
-        canvas.setDrawFilter(paintFlagsDrawFilter);
-        canvas.save();
-        canvas.clipPath(mPath);
-        if (showStroke) {
-            //画圆角矩形边框
-            Paint paint = new Paint();
-            paint.setColor(Color.BLACK);
-            paint.setStyle(Paint.Style.FILL);
-            paint.setStrokeWidth(DEFAULT_STROKE_WIDTH);
-            paint.setAntiAlias(true);
-            paint.setDither(true);
-            canvas.drawPath(mPath, paint);
-        }
         super.dispatchDraw(canvas);
-        canvas.restore();
+
     }
 
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mRectF = new RectF(w / 8 * 3 + DEFAULT_STROKE_WIDTH / 2, h, w / 8 * 5 - DEFAULT_STROKE_WIDTH / 2, h);
+        width = getMeasuredWidth();
+        height = getMeasuredHeight();
+        if (triangle != 0) {
+            mRectF = new RectF(width / 8 * 3 + DEFAULT_STROKE_WIDTH / 2, triangle, width / 8 * 5 - DEFAULT_STROKE_WIDTH / 2, height);
+        } else {
+            mRectF = new RectF(width / 8 * 3 + DEFAULT_STROKE_WIDTH / 2, 0, width / 8 * 5 - DEFAULT_STROKE_WIDTH / 2, height);
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Log.i("hgk", "......<onDraw>........" + height + "..........showStroke=======" + showStroke);
+        if (showStroke && triangle != 0) {
+//            paint.setColor(Color.BLACK); 1.732
+            //实例化路径
+            triPath.moveTo(width / 8 * 4, triangle);// 此点为多边形的起点
+            triPath.lineTo(width / 8 * 5, triangle);
+            triPath.lineTo(width / 16 * 7, 0);
+            triPath.close(); // 使这些点构成封闭的多边形
+            canvas.drawPath(triPath, paint);
+            canvas.translate(0, triangle);
+        }
+        mPath.reset();
+        mPath.addRoundRect(mRectF, rids, Path.Direction.CW);
+        canvas.setDrawFilter(paintFlagsDrawFilter);
+        canvas.save();
+        canvas.clipPath(mPath);
+
+        if (showStroke) {
+            //画圆角矩形边框
+//            Paint paint = new Paint();
+            canvas.drawPath(mPath, paint);
+        }
+//        canvas.drawPath(mPath, paint);
+        canvas.restore();
     }
 }
