@@ -2,8 +2,10 @@ package com.example.admin.myapplication_app;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +17,6 @@ public class CustomViewActivity extends AppCompatActivity {
 
     RoundRectangleLayoutWithClipPath parentView;
     RoundRectangleLayoutWithClipPath view;
-    TextView tv_emoji;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,8 @@ public class CustomViewActivity extends AppCompatActivity {
 
         parentView = findViewById(R.id.clip_parent_view);
         view = findViewById(R.id.clip_view);
-        tv_emoji = findViewById(R.id.tv_emoji);
+
+        ((AnimationDrawable) ((ImageView)findViewById(R.id.star)).getDrawable()).start();
 
         view.post(new Runnable() {
             @Override
@@ -42,16 +44,5 @@ public class CustomViewActivity extends AppCompatActivity {
                 objectAnimator.start();
             }
         });
-
-        int adType = 2;
-        switch (adType) {
-            case 1:
-                break;
-            default:
-                return;
-        }
-        Log.i("CustomViewActivity===","adtype="+adType);
-
-        tv_emoji.setText("\uD83D");
     }
 }

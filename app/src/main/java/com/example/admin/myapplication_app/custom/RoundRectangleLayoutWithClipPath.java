@@ -17,11 +17,8 @@ import androidx.annotation.Nullable;
 
 import com.example.admin.myapplication_app.R;
 
-
 /**
- * author : chrc
- * date   : 2019/7/24  10:04 PM
- * desc   :
+ * @author admin
  */
 public class RoundRectangleLayoutWithClipPath extends LinearLayout {
 
@@ -65,20 +62,13 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
         showStroke = array.getBoolean(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_show, false);
         array.recycle();
         mPath = new Path();
-//        mRectF = new RectF(getWidth() / 4 , getHeight() / 4, getWidth() / 4 * 3, getHeight() / 4 * 3);
         paintFlagsDrawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-//        setLayerType(View.LAYER_TYPE_HARDWARE, null);
     }
 
     public void setRate(float rate) {
-        Log.i("clipview===","width="+getWidth()
-                +"  height="+getHeight()
-                +" left="+(getWidth() / 8 * 3 - rate * getWidth() / 8 * 3)
-                +" right="+(rate * getWidth() / 8 * 3 + getWidth() / 8 * 5)
-                +" rate="+rate);
         this.rate = rate;
         //为保持边界宽度一致， 计算时要考虑到这个DEFAULT_STROKE_WIDTH / 2
-        mRectF = new RectF(getWidth() / 8 * 3 - rate * getWidth() / 8 * 3 + DEFAULT_STROKE_WIDTH / 2 ,
+        mRectF = new RectF(getWidth() / 8 * 3 - rate * getWidth() / 8 * 3 + DEFAULT_STROKE_WIDTH / 2,
                 0,
                 rate * getWidth() / 8 * 3 + getWidth() / 8 * 5 - DEFAULT_STROKE_WIDTH / 2,
                 getHeight());
@@ -93,55 +83,24 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
         canvas.setDrawFilter(paintFlagsDrawFilter);
         canvas.save();
         canvas.clipPath(mPath);
-        Log.i("clipview===","showstorke="+showStroke);
         if (showStroke) {
             //画圆角矩形边框
             Paint paint = new Paint();
-            paint.setColor(Color.WHITE);
-            paint.setStyle(Paint.Style.STROKE);//设置空心
+            paint.setColor(Color.BLACK);
+            paint.setStyle(Paint.Style.FILL);
             paint.setStrokeWidth(DEFAULT_STROKE_WIDTH);
             paint.setAntiAlias(true);
             paint.setDither(true);
-//        canvas.drawRoundRect(mRectF,rids[0], rids[0], paint);
             canvas.drawPath(mPath, paint);
         }
         super.dispatchDraw(canvas);
-         if (getChildCount() > 0) {
-             for (int i = 0; i < getChildCount(); i++) {
-                 View view = getChildAt(i);
-
-             }
-         }
-
         canvas.restore();
     }
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        mPath.reset();
-//        mPath.addRoundRect(mRectF, rids, Path.Direction.CW);
-//        canvas.setDrawFilter(paintFlagsDrawFilter);
-//        canvas.save();
-//        canvas.clipPath(mPath);
-//
-//        super.onDraw(canvas);
-//
-//        Paint paint = new Paint();
-//        paint.setColor(Color.GREEN);
-//        paint.setStyle(Paint.Style.STROKE);//设置空心
-//        paint.setStrokeWidth(6);
-//        paint.setAntiAlias(true);
-//        paint.setDither(true);
-//        canvas.drawRoundRect(mRectF,rids[0], rids[0], paint);
-//
-//        canvas.restore();
-//
-//
-//    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mRectF = new RectF(w / 8 * 3 + DEFAULT_STROKE_WIDTH / 2 , h,  w / 8 *  5 - DEFAULT_STROKE_WIDTH / 2, h);
+        mRectF = new RectF(w / 8 * 3 + DEFAULT_STROKE_WIDTH / 2, h, w / 8 * 5 - DEFAULT_STROKE_WIDTH / 2, h);
     }
 }

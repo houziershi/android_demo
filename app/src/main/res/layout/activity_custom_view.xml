@@ -3,48 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0000"
+    android:background="#94000000"
     android:gravity="center"
     android:orientation="vertical">
 
     <com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath
         android:id="@+id/clip_parent_view"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
         android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:clip_path_radius_corner="10dp"
         app:clip_path_rate="0.8"
         app:clip_path_show="true">
 
         <com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath
             android:id="@+id/clip_view"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="#000000"
             app:clip_path_radius_corner="10dp"
             app:clip_path_rate="0.8">
 
             <ImageView
+                android:id="@+id/star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/star_anim" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="代发件代发解放军阿里附近；奥拉夫地方加奥拉夫结案率加法；"
-                android:textSize="30dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="喜欢我就分享一下"
+                android:textColor="#ffffff"
+                android:textSize="18dp" />
 
         </com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath>
 
     </com.example.admin.myapplication_app.custom.RoundRectangleLayoutWithClipPath>
 
-    <TextView
-        android:id="@+id/tv_emoji"
+
+    <com.example.admin.myapplication_app.custom.MyClipLinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ffff00" />
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="喜欢我就分享一下"
+            android:textSize="30dp" />
+
+        <com.example.admin.myapplication_app.custom.MyClipView
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+    </com.example.admin.myapplication_app.custom.MyClipLinearLayout>
 
 </LinearLayout>
