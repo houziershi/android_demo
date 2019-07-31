@@ -7,10 +7,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -22,13 +22,14 @@ import com.example.admin.myapplication_app.R;
  */
 public class RoundRectangleLayoutWithClipPath extends LinearLayout {
 
-    private float DEFAULT_STROKE_WIDTH = 6;
+    private float DEFAULT_STROKE_WIDTH = 0;
     private Path mPath;
     private RectF mRectF;
     private float rate;
-    private boolean showStroke;
 
-    private float triangle = 0f;
+    private boolean roundRectangle;
+
+    private float triangle;
 
     //优化 onDraw 局部变量
     private int width;
@@ -69,7 +70,7 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
 
         rate = array.getFloat(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_rate, 0.5f);
         triangle = array.getDimension(R.styleable.RoundRectangleLayoutWithClipPath_triangle, 0f);
-        showStroke = array.getBoolean(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_show, false);
+        roundRectangle = array.getBoolean(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_show, false);
         array.recycle();
         mPath = new Path();
         paintFlagsDrawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
@@ -106,9 +107,24 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        //画 裁剪区域
+        Log.i("hgk", " <dispatchDraw> ........canvas.getClipBounds()..." + canvas.getClipBounds().toShortString() + "........roundRectangle=" + roundRectangle);
+        mPath.reset();
+        mPath.addRoundRect(mRectF, rids, Path.Direction.CW);
+        canvas.setDrawFilter(paintFlagsDrawFilter);
+        canvas.save();
+        canvas.clipPath(mPath);
+        if (roundRectangle) {
+            //画圆角矩形边框
+            Paint paint = new Paint();
+            paint.setColor(Color.BLACK);
+            paint.setStyle(Paint.Style.FILL);
+//            paint.setStrokeWidth(DEFAULT_STROKE_WIDTH);
+            paint.setAntiAlias(true);
+            paint.setDither(true);
+            canvas.drawPath(mPath, paint);
+        }
         super.dispatchDraw(canvas);
-
+        canvas.restore();
     }
 
 
@@ -126,29 +142,33 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.i("hgk", "......<onDraw>........" + height + "..........showStroke=======" + showStroke);
-        if (showStroke && triangle != 0) {
-//            paint.setColor(Color.BLACK); 1.732
-            //实例化路径
-            triPath.moveTo(width / 8 * 4, triangle);// 此点为多边形的起点
+        Log.i("hgk", "<onDraw>.........mRectF==" + mRectF.toShortString() + ".......height=" + height + ".......roundRectangle=====" + roundRectangle);
+        drawOutRect(canvas);
+        if (triangle != 0 ) {
+            /**Created by guokun on 2019/7/31.
+             * Description: 1.732，画三角形*/
+            canvas.save();
+            triPath.reset();
+            triPath.moveTo(width / 8 * 4, triangle);
             triPath.lineTo(width / 8 * 5, triangle);
-            triPath.lineTo(width / 16 * 7, 0);
-            triPath.close(); // 使这些点构成封闭的多边形
+            triPath.lineTo(width / 16 * 9, 0);
+            triPath.close();
             canvas.drawPath(triPath, paint);
             canvas.translate(0, triangle);
+            canvas.restore();
         }
-        mPath.reset();
-        mPath.addRoundRect(mRectF, rids, Path.Direction.CW);
-        canvas.setDrawFilter(paintFlagsDrawFilter);
-        canvas.save();
-        canvas.clipPath(mPath);
+    }
 
-        if (showStroke) {
-            //画圆角矩形边框
-//            Paint paint = new Paint();
-            canvas.drawPath(mPath, paint);
-        }
-//        canvas.drawPath(mPath, paint);
-        canvas.restore();
+    private void drawOutRect(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setAntiAlias(true);
+        canvas.drawRect(new Rect(
+                0,
+                0,
+                width,
+                height
+        ), paint);
     }
 }
