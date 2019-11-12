@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.OverScroller;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class PullableLayout extends ViewGroup {
     private TextView tvPullHeader;
     private ProgressBar pbPullHeader;
     private TextView tvPullFooter;
+    private OverScroller mScroller;
 
     public PullableLayout(Context context) {
         this(context, null);
@@ -52,6 +54,7 @@ public class PullableLayout extends ViewGroup {
         tvPullFooter = mFooter.findViewById(R.id.tv_pullable_footer);
         final ViewConfiguration configuration = ViewConfiguration.get(context);
         mTouchSlop = configuration.getScaledTouchSlop();
+        mScroller = new OverScroller(context);
         effectiveScrollY = Util.dip2px(context, 60);
     }
 
@@ -104,6 +107,16 @@ public class PullableLayout extends ViewGroup {
     }
 
     @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(0, mScroller.getCurrY());
+//            invalidate();
+//            postInvalidate();
+        }
+        postInvalidate();
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i(TAG, "<onTouchEvent>");
         final int action = event.getAction();
@@ -138,9 +151,11 @@ public class PullableLayout extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
                 if (Math.abs(getScrollY()) < effectiveScrollY) {
-                    scrollBy(0, -getScrollY());
+                    mScroller.startScroll(0, getScrollY(), 0, -getScrollY());
+//                    scrollBy(0, -getScrollY());
                 } else {
-                    scrollBy(0, -(getScrollY() + effectiveScrollY));
+                    mScroller.startScroll(0, getScrollY(), 0, -(getScrollY() + effectiveScrollY));
+//                    scrollBy(0, -(getScrollY() + effectiveScrollY));
                     tvPullHeader.setVisibility(View.GONE);
                     pbPullHeader.setVisibility(View.VISIBLE);
                 }
