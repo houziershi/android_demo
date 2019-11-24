@@ -272,16 +272,16 @@ constructor(
         mMinuteDegress = minute * 6
         mSecondMillsDegress = second * 6 + secondMills * 0.006f
         mSecondDegress = second * 6
-        val mills = secondMills * 0.006f
-        //因为是没2°旋转一个刻度，所以这里要根据毫秒值来进行计算
-        when (mills) {
-            in 2 until 4 -> {
-                mSecondDegress += 2
-            }
-            in 4 until 6 -> {
-                mSecondDegress += 4
-            }
-        }
+        /* val mills = secondMills * 0.006f
+         //因为是没2°旋转一个刻度，所以这里要根据毫秒值来进行计算
+         when (mills) {
+             in 2 until 4 -> {
+                 mSecondDegress += 2
+             }
+             in 4 until 6 -> {
+                 mSecondDegress += 4
+             }
+         }*/
     }
 
     /**
