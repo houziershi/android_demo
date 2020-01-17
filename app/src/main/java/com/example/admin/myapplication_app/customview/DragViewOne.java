@@ -98,7 +98,7 @@ public class DragViewOne extends LinearLayout {
     }
 
     @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
         return mDragger.shouldInterceptTouchEvent(event);
     }
 

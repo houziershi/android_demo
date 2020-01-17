@@ -31,9 +31,10 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2' // add library
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.10.0'
-    implementation "androidx.core:core-ktx:+"
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.material:material:1.2.0-alpha01'
+    implementation project(path: ':smart-refresh-layout')
 }
 repositories {
     mavenCentral()
