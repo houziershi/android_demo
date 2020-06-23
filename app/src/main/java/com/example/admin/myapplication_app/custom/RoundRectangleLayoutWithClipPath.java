@@ -69,7 +69,7 @@ public class RoundRectangleLayoutWithClipPath extends LinearLayout {
         rids[7] = mRadius;
 
         rate = array.getFloat(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_rate, 0.5f);
-        triangle = array.getDimension(R.styleable.RoundRectangleLayoutWithClipPath_triangle, 0f);
+        triangle = array.getDimension(R.styleable.RoundRectangleLayoutWithClipPath_triangle_clip, 0f);
         roundRectangle = array.getBoolean(R.styleable.RoundRectangleLayoutWithClipPath_clip_path_show, false);
         array.recycle();
         mPath = new Path();

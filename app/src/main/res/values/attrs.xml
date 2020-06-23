@@ -21,4 +21,8 @@
         <attr name="isSetParentClick" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="TriangleView">
+        <attr name="triangle" format="boolean"/>
+    </declare-styleable>
+
 </resources>
