@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
@@ -26,8 +26,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.annotation:annotation:1.0.2'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:greendao:3.2.2' // add library
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.10.0'
@@ -35,6 +35,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.material:material:1.2.0-alpha01'
     implementation project(path: ':smart-refresh-layout')
+    implementation 'com.airbnb.android:lottie:3.4.0'
 }
 repositories {
     mavenCentral()

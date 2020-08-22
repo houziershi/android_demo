@@ -216,6 +216,7 @@ public class SmartRefreshLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        System.out.println("hgk.......<onInterceptTouchEvent> ");
         boolean intercept = false;
         // 记录此次触摸事件的y坐标
         int y = (int) event.getY();
@@ -342,10 +343,11 @@ public class SmartRefreshLayout extends ViewGroup {
                 // 计算本次滑动的Y轴增量(距离)
                 int dy = mLastYMoved - y;
                 // 如果滑动增量小于0，即下拉操作
+                System.out.println("hgk <onTouchEvent> ............");
                 if (dy < 0) {
-                    if (mEnablePullDown) {
+                    if (true) {
                         // 如果下拉的距离小于mLayoutHeader1/2的高度,则允许滑动
-                        if (getScrollY() > 0 || Math.abs(getScrollY()) <= mLayoutHeader.getMeasuredHeight() / 2) {
+                        if (getScrollY() > 0) {
                             if (status != TRY_LOAD_MORE && status != LOAD_MORE) {
                                 scrollBy(0, dy);
                                 if (status != REFRESH) {

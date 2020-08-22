@@ -9,7 +9,6 @@ import me.hwang.library.widgit.SmartRefreshLayout;
 
 public class PullableActivity extends AppCompatActivity {
     private SmartRefreshLayout mLayout;
-    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,10 @@ public class PullableActivity extends AppCompatActivity {
                 /*
                  * do what you want do
                  */
+                System.out.println("hgk.........onLoadMore");
                 mLayout.stopLoadMore();
             }
         });
-        view.getClass();
     }
 
 }

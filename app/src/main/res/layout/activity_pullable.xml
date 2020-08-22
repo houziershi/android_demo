@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <me.hwang.library.widgit.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/smart_refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:enablePullDown="false">
 
     <ScrollView
         android:id="@+id/iv"
@@ -16,6 +18,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieLoadingV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="loading.json"
+                app:lottie_loop="true" />
 
             <TextView
                 android:layout_width="wrap_content"
