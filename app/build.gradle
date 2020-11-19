@@ -7,7 +7,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.admin.myapplication_app"
-        minSdkVersion 23
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha01'
     implementation project(path: ':smart-refresh-layout')
     implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
 }
 repositories {
     mavenCentral()
