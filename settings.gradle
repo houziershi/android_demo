@@ -1,2 +1,1 @@
-include ':hollowkit'
 include ':app', ':smart-refresh-layout'

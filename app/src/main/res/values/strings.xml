@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application_app</string>
+
+    <string name="tab_recycler">recycler</string>
+    <string name="tab_nested_scroll">nested</string>
+    <string name="tab_view_pager">viewpager</string>
+
+    <string name="view_pager_bottom_sheet_behavior" translatable="false">com.example.admin.myapplication_app.viewdrager.ViewPagerBottomSheetBehavior</string>
 </resources>
