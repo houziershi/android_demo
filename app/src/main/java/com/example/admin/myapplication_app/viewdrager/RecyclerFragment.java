@@ -33,9 +33,9 @@ public class RecyclerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true));
         recyclerView.setAdapter(new SimpleAdapter(getContext()));
+
     }
 
     private static class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.ViewHolder> {

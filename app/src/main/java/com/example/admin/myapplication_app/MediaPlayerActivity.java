@@ -36,4 +36,6 @@ public class MediaPlayerActivity extends AppCompatActivity {
         bottomSheetTabLayout.setupWithViewPager(bottomSheetViewPager);
         BottomSheetUtils.setupViewPager(bottomSheetViewPager);
     }
+
+
 }

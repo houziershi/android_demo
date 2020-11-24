@@ -23,12 +23,20 @@
         android:background="?attr/colorBackgroundFloating"
         android:elevation="16dp"
         android:orientation="vertical"
-        app:behavior_peekHeight="@dimen/dimen_80"
+        app:behavior_peekHeight="@dimen/dimen_240"
         app:layout_behavior="@string/view_pager_bottom_sheet_behavior">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="播放器"
+                android:textColor="#000000"
+                android:textSize="30dp" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/bottom_sheet_tabs"
