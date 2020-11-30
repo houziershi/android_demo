@@ -20,7 +20,8 @@
 
         <activity
             android:name=".MediaPlayerActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask"
+            android:theme="@style/DragDismissTheme"></activity>
 
     </application>
 

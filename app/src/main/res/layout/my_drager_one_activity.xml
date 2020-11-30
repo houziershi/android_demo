@@ -11,8 +11,8 @@
 
         <TextView
             android:id="@+id/drag_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="@dimen/dimen_50"
             android:gravity="center"
             android:text="drag view"
             android:textSize="20dp" />
@@ -21,6 +21,7 @@
             android:id="@+id/back_tv"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="@dimen/dimen_50"
             android:gravity="center"
             android:text="back view"
             android:textSize="20dp" />
@@ -30,6 +31,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
+            android:layout_marginTop="@dimen/dimen_50"
             android:text="edge tracker"
             android:textSize="20dp" />
     </com.example.admin.myapplication_app.customview.DragViewOne>

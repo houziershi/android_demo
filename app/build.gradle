@@ -22,10 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation (name: 'MagicIndicator-1.5.0', ext: 'aar')
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'org.greenrobot:greendao:3.2.2' // add library
@@ -37,6 +44,7 @@ dependencies {
     implementation project(path: ':smart-refresh-layout')
     implementation 'com.airbnb.android:lottie:3.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
 }
 repositories {
     mavenCentral()

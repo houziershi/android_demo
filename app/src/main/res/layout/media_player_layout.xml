@@ -6,7 +6,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/dragdismiss_colorAccent">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,6 +19,7 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/colorBackgroundFloating"
@@ -26,29 +28,23 @@
         app:behavior_peekHeight="@dimen/dimen_240"
         app:layout_behavior="@string/view_pager_bottom_sheet_behavior">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="底部抽屉头部"
+            android:textSize="@dimen/dimen_12" />
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/dimen_40" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="播放器"
-                android:textColor="#000000"
-                android:textSize="30dp" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/bottom_sheet_tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabBackground="?attr/selectableItemBackground"
-                app:tabGravity="fill"
-                app:tabMode="fixed"
-                app:tabPaddingEnd="@dimen/dimen_12"
-                app:tabPaddingStart="@dimen/dimen_12" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eaeaea" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/bottom_sheet_viewpager"

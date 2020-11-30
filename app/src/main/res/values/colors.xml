@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="dragdismiss_colorPrimary">#3F51B5</color>
+    <color name="dragdismiss_colorPrimaryDark">#303F9F</color>
+    <color name="dragdismiss_colorAccent">#FF4081</color>
+    <color name="dragdismiss_toolbarBackground">#33000000</color>
+    <color name="dragdismiss_transparentSideBackground">#AA000000</color>
+
+    <color name="dragdismiss_windowBackground">@android:color/white</color>
+    <color name="dragdismiss_headerBackground">#E5E5E5</color>
+    <color name="dragdismiss_primaryText">#E2000000</color>
+    <color name="dragdismiss_secondaryText">#8C000000</color>
 </resources>

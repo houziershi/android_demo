@@ -40,4 +40,16 @@
         <attr name="triangle_clip" format="dimension" />
     </declare-styleable>
 
+    <style name="DragDismissTheme.Base" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dragdismiss_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/dragdismiss_colorPrimaryDark</item>
+        <item name="colorAccent">@color/dragdismiss_colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="DragDismissTheme" parent="DragDismissTheme.Base">  </style>
+
 </resources>
