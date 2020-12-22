@@ -13,7 +13,6 @@ import com.example.admin.myapplication_app.viewdrager.SimpleNavigatorAdapter;
 import com.example.admin.myapplication_app.viewdrager.SwipeBackLayout;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
-import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 
@@ -57,7 +56,7 @@ public class MediaPlayerActivity extends AppCompatActivity {
         commonNavigator.setAdapter(navigatorAdapter);
         commonNavigator.setAdjustMode(false);
         mMagicIndicator.setNavigator(commonNavigator);
-        ViewPagerHelper.bind(mMagicIndicator, bottomSheetViewPager);
+//        ViewPagerHelper.bind(mMagicIndicator, bottomSheetViewPager);
     }
 
     private CommonNavigatorAdapter getCommonNavigatorAdapter(String[] titles, ViewPager bottomSheetViewPager) {

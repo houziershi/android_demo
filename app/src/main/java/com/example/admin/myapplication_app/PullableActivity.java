@@ -1,7 +1,6 @@
 package com.example.admin.myapplication_app;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
