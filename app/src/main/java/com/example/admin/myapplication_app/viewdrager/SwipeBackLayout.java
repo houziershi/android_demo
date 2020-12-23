@@ -139,7 +139,6 @@ public class SwipeBackLayout extends ViewGroup {
         }
 //        innerScrollView = Util.findAllScrollViews(this);
         innerScrollView = findViewById(R.id.ll_container);
-        System.out.println("hgk........<innerScrollView>......."+innerScrollView.getClass().getSimpleName());
     }
 
     @Override
@@ -168,13 +167,13 @@ public class SwipeBackLayout extends ViewGroup {
                             return super.onInterceptTouchEvent(ev);
                         }
                     }
+                } else {
+                    return mDragHelper.shouldInterceptTouchEvent(ev);
                 }
                 break;
         }
-        boolean handled = mDragHelper.shouldInterceptTouchEvent(ev);
-        System.out.println("hgk......<onInterceptTouchEvent>........handled="+handled);
-        handled = false;
-        return handled ? handled : super.onInterceptTouchEvent(ev);
+
+        return false;
     }
 
     @Override

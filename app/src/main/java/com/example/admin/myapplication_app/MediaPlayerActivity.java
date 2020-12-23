@@ -71,6 +71,5 @@ public class MediaPlayerActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0, 0);
     }
 }
